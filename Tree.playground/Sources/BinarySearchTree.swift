@@ -78,6 +78,9 @@ extension BinarySearchTree {
         print("\(node.data)", terminator: " --> ")
     }
 
+    public func levelOrderTraversal(withRootNode node: BSTNode<T>?) {
+        
+    }
 }
 
 // =========================
@@ -110,9 +113,54 @@ extension BinarySearchTree {
 // Binary Search Tree - Searching a value
 // ==================================================================
 
+extension BinarySearchTree {
+    
+    public func search(_ value: T) {
+        self.search(self.rootNode, value)
+    }
+    
+    // Do POST-ORDER traversal for SEARCHING
+    private func search(_ root: BSTNode<T>?, _ value: T) {
+        guard  let rootNode = root else {
+            print("Node is NOT AVAILABLE: \(value)")
+            return
+        }
+        print("Current Root node: \(rootNode.data)")
+        if rootNode.data < value {
+            self.search(rootNode.rightNode, value)
+        } else if rootNode.data > value {
+            self.search(rootNode.leftNode, value)
+        } else {
+            print("Node value AVAILABLE: \(rootNode.data)")
+        }
+    }
+
+}
+
 // ==================================================================
-// Binary Search Tree - Delete a node - TBD
+// Binary Search Tree - Delete a node
+//
+// Case 1: The element to be deleted is a leaf node. (A node with no children)
+//      - navigate to the node and delete it
+// Case 2: Node that is to be deleted has one child
+//      - similar to node deletion in a linkedList
+//      - The child’s connection is first made with the parent of the node to be deleted and then the node is deleted
+// Case 3: Node to be deleted has two children
+//      - Find:
+//          - Smallest value in the right subtree, or
+//          - Largest value in the left subtree (We may choose this when there is no right subtree present)
+//      - Now swap the values of the resultant node and the node to be deleted
+//      - Look at the tree, if the structure and situation are either of the two cases, case 1 and case 2 respectively
+//          - According to the found case, proceed
 // ==================================================================
+
+extension BinarySearchTree {
+    
+    public func deleteKey(_ value: T) {
+        
+    }
+
+}
 
 // ==================================================================
 // Binary Search Tree - Print the tree
