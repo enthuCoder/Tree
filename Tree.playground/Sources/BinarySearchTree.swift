@@ -91,8 +91,8 @@ extension BinarySearchTree {
 extension BinarySearchTree {
     
     // Extreme left node will have minimum value
-    public func minNode() -> BSTNode<T>? {
-        var node = self.rootNode
+    public func minNode(_ inputNode: BSTNode<T>?) -> BSTNode<T>? {
+        var node = inputNode
         while let next = node?.leftNode {
             node = next
         }
@@ -100,8 +100,8 @@ extension BinarySearchTree {
     }
     
     // Extreme right node will have maximum value
-    public func maxNode() -> BSTNode<T>? {
-        var node = self.rootNode
+    public func maxNode(_ inputNode: BSTNode<T>?) -> BSTNode<T>? {
+        var node = inputNode
         while let next = node?.rightNode {
             node = next
         }
@@ -134,7 +134,6 @@ extension BinarySearchTree {
             print("Node value AVAILABLE: \(rootNode.data)")
         }
     }
-
 }
 
 // ==================================================================
@@ -157,9 +156,30 @@ extension BinarySearchTree {
 extension BinarySearchTree {
     
     public func deleteKey(_ value: T) {
-        
+        self.rootNode = self.deleteRecursive(self.rootNode, value)
     }
-
+    
+    private func deleteRecursive(_ root: BSTNode<T>?, _ value: T) -> BSTNode<T>? {
+        if root == nil {
+            return root
+        }
+    
+        if value > (root?.data)! {
+            root?.rightNode = deleteRecursive(root?.rightNode, value)
+        } else if value < (root?.data)! {
+            root?.leftNode = deleteRecursive(root?.leftNode, value)
+        } else {
+            if root?.leftNode == nil {
+                return root?.rightNode
+            } else if root?.rightNode == nil {
+                return root?.leftNode
+            }
+    
+            root?.data = (minNode(root?.rightNode)!).data
+            root?.rightNode = deleteRecursive(root?.rightNode, (root?.data)!)
+        }
+        return root
+    }
 }
 
 // ==================================================================
