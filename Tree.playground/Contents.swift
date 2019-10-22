@@ -46,3 +46,8 @@ print("\nDelete node \(deleteNodeData):")
 root.deleteKey(deleteNodeData)
 print("Updated tree:")
 print("\(root.printBST())")
+
+// =======================
+// Check if a tree is BST
+// =======================
+print("Is BinarySearchTree: \(root.isValidBST(root.rootNode))")

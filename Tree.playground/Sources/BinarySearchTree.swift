@@ -183,6 +183,32 @@ extension BinarySearchTree {
 }
 
 // ==================================================================
+// Binary Search Tree - Check if it is BST
+// Approach 1: In-Order Traversal of a BST is in ascending order. Use this property to check if it is a BST
+// Approach 2: https://www.youtube.com/watch?v=MILxfAbIhrE
+//          Below implementation is using Approach 2
+// ==================================================================
+extension BinarySearchTree {
+    
+    public func isValidBST(_ root: BSTNode<T>?) -> Bool {
+        
+        let isBST: Bool = isBinarySearchTree(withRootNode: root, min: Int.min, max: Int.max)
+        return isBST
+    }
+    
+    public func isBinarySearchTree(withRootNode node: BSTNode<T>?, min: Int, max: Int) -> Bool {
+        if node == nil {
+            return true
+        }
+        if (node!.data as! Int) < min || (node!.data as! Int) > max || (node!.data as! Int) == min || (node!.data as! Int) == max {
+            return false
+        }
+        return isBinarySearchTree(withRootNode: node!.leftNode, min: min, max: (node!.data as! Int)) && isBinarySearchTree(withRootNode: node!.rightNode, min: (node!.data as! Int), max: max)
+    }
+
+}
+
+// ==================================================================
 // Binary Search Tree - Print the tree
 // ==================================================================
 extension BinarySearchTree {
