@@ -15,6 +15,20 @@ public class BinarySearchTree<T: Comparable & CustomStringConvertible> {
 }
 
 // ==================================================================
+// Binary Search Tree - Helper Functions
+// ==================================================================
+extension BinarySearchTree {
+    
+    public func isLeaf(node: BSTNode<T>?) -> Bool {
+        if node?.leftNode == nil && node?.rightNode == nil {
+            return true
+        } else {
+            return false
+        }
+    }
+}
+
+// ==================================================================
 // Binary Search Tree - Add Node
 // ==================================================================
 extension BinarySearchTree {
@@ -106,6 +120,19 @@ extension BinarySearchTree {
             node = next
         }
         return node
+    }
+}
+
+// ============================
+// Height or maxDepth of a Node
+// ============================
+extension BinarySearchTree {
+    
+    public func maxDepth(ofNode node: BSTNode<T>?) -> Int {
+        if isLeaf(node: node) {
+            return 0
+        }
+        return max(maxDepth(ofNode: node?.leftNode), maxDepth(ofNode: node?.rightNode)) + 1
     }
 }
 
