@@ -38,16 +38,14 @@ extension Queue {
     }
     
     public mutating func enqueue(_ newValue: T) {
-        print("ENQUEUE ITEM: \(newValue.description)")
         storage.append(newValue)
     }
     
     public mutating func dequeue() -> T? {
-        guard let firstItem = storage.first else {
+        guard let _ = storage.first else {
             print("Queue is empty")
             return nil
         }
-        print("DEQUEUE ITEM: \(firstItem.description)")
         return storage.removeFirst()
     }
 }

@@ -12,6 +12,9 @@ public class BinarySearchTree<T: Comparable & CustomStringConvertible> {
     public var rootNode: BSTNode<T>?
     
     public init() {}
+    
+    // For implementing level order (BFS) traversal
+    private var queue: Queue<BSTNode<T>> = Queue<BSTNode<T>>()
 }
 
 // ==================================================================
@@ -93,7 +96,25 @@ extension BinarySearchTree {
     }
 
     public func levelOrderTraversal(withRootNode node: BSTNode<T>?) {
-        
+        guard let node = self.rootNode else {
+            print("Tree is empty")
+            return
+        }
+        self.queue.enqueue(node)
+        while !self.queue.isEmpty {
+            guard let dequeueNode = self.queue.dequeue() else {
+                break
+            }
+            print("\(dequeueNode.data)", terminator: " --> ")
+            if let leftNode = dequeueNode.leftNode {
+                self.queue.enqueue(leftNode)
+            }
+            
+            if let rightNode = dequeueNode.rightNode {
+                self.queue.enqueue(rightNode)
+            }
+        }
+        print("\n")
     }
 }
 

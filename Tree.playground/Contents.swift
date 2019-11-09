@@ -49,6 +49,9 @@ root.preOrderTraversal(withRootNode: root.rootNode)
 print("\n\nPost-Order Traversal: ")
 root.postOrderTraversal(withRootNode: root.rootNode)
 
+print("\n\nLevel-Order OR BFS Traversal: ")
+rootNew.levelOrderTraversal(withRootNode: rootNew.rootNode)
+
 // ==============
 // Tree Searching
 // ==============
