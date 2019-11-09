@@ -9,7 +9,7 @@ print("\n // =========================================")
 print("    ********** BINARY SEARCH TREE ********** ")
 print(" // =========================================\n")
 
-let numberList: Array<Int> = [11, 2, 13, 1, 9, 57, 3, 25, 90, 17, 26, 95]
+let numberList: Array<Int> = [10,5,15,3,7,18] //[11, 2, 13, 1, 9, 57, 3, 25, 90, 17, 26, 95]
 var root = BinarySearchTree<Int>()
 
 // ==================
@@ -22,10 +22,20 @@ for number in numberList {
 // ==================
 // Print a BST
 // ==================
-print("\(root.printBST())")
+print("BST 1:\n \(root.printBST())\n")
+
+let newList = [10,5,15,3,7,13,18,1,6]
+var rootNew = BinarySearchTree<Int>()
+for number in newList {
+    rootNew.addNode(number)
+}
+print("BST 2:\n \(rootNew.printBST())\n")
 
 print("Min Node: \(String(describing: root.minNode(root.rootNode)))")
 print("Max Node: \(String(describing: root.maxNode(root.rootNode)))")
+
+
+
 
 // ==============
 // Tree Traversal
@@ -97,7 +107,7 @@ for number in numberListForAVL {
     avlTree.addNode(number)
     
     // Check if the tree is balanced. If yes, continue adding next element
-    print("AVL Tree after adding \(number) Ndoe: \(avlTree.printAVLTree())")
+//    print("AVL Tree after adding \(number) Ndoe: \(avlTree.printAVLTree())")
     if avlTree.rootNode?.balanced == true {
         print("The Tree is balanced, no need to Balance it again")
         continue
