@@ -163,24 +163,27 @@ extension BinarySearchTree {
 
 extension BinarySearchTree {
     
-    public func search(_ value: T) {
-        self.search(self.rootNode, value)
+    public func search(_ value: T) -> BSTNode<T>? {
+        return self.search(self.rootNode, value)
     }
     
     // Do POST-ORDER traversal for SEARCHING
-    private func search(_ root: BSTNode<T>?, _ value: T) {
+    @discardableResult
+    private func search(_ root: BSTNode<T>?, _ value: T) -> BSTNode<T>? {
         guard  let rootNode = root else {
             print("Node is NOT AVAILABLE: \(value)")
-            return
+            return nil
         }
         print("Current Root node: \(rootNode.data)")
-        if rootNode.data < value {
-            self.search(rootNode.rightNode, value)
-        } else if rootNode.data > value {
-            self.search(rootNode.leftNode, value)
-        } else {
+        if rootNode.data == value {
             print("Node value AVAILABLE: \(rootNode.data)")
+            return root
+        } else if rootNode.data < value {
+            return search(rootNode.rightNode, value)
+        } else if rootNode.data > value {
+            return search(rootNode.leftNode, value)
         }
+        return nil
     }
 }
 
@@ -267,6 +270,14 @@ extension BinarySearchTree {
         }
         
         return printTree(root) { ($0.data, $0.leftNode, $0.rightNode) }
+    }
+    
+    public func printBST(withRoot root: BSTNode<T>?) -> String {
+        guard let rootNode = root else {
+            return "Empty Tree!!\n"
+        }
+        
+        return printTree(rootNode) { ($0.data, $0.leftNode, $0.rightNode) }
     }
     
     // SOURCE: https://stackoverflow.com/questions/43898440/how-to-draw-a-binary-tree-in-console

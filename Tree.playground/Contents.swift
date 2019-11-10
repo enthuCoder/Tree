@@ -59,6 +59,14 @@ let searchData = 17
 print("Search Node with data value \(searchData):")
 root.search(searchData)
 
+let searchData2 = 5
+print("Search Node with data value \(searchData2):")
+let searchedNode = root.search(searchData2)
+if let node = searchedNode {
+    print("Found Node \(node)")
+}
+print("\(root.printBST(withRoot: searchedNode))")
+
 // =======================
 // Delete nodes from a BST
 // =======================
