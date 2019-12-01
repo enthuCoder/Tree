@@ -21,3 +21,17 @@ print("        ********** N-ary Trees ********** ")
 print("// =========================================\n")
 let nAryTreeTest = NAryTree_Test()
 nAryTreeTest.nAryTree_Test()
+
+print("\n// =========================================")
+print("        ********** Trie ********** ")
+print("// =========================================\n")
+
+let trie_test = Trie_Test()
+trie_test.Trie_Test()
+
+print("\n// =========================================")
+print("        ********** Heap & Priority Queues ********** ")
+print("// =========================================\n")
+
+let heap_test = Heap_Test()
+heap_test.Heap_Test()
